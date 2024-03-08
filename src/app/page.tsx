@@ -21,21 +21,21 @@ export default function Home() {
           <h1 className="text-black text-4xl drop-shadow-md mb-2 dark:text-white ">
             Spotlight
           </h1>
-          <hr className="w-2/5 p-2 "/>
+          <hr className="w-2/5 p-2 border-gray-300 "/>
           <MainCarousel />
         </section>
         <section className="mb-4 p-2 lg:mb-0 lg:flex-1">
           <h1 className="text-black text-4xl drop-shadow-md mb-2  dark:text-white">
-            Today's Matches ⚽️
+          Matches ⚽️
           </h1>
-          <hr className="w-2/5 p-2 "/>
-          <MatchesList />
+          <hr className="w-2/5 p-2 border-gray-300  "/>
+          <MatchesList /> 
         </section>
       </main>
       <h1 className="text-black text-4xl drop-shadow-md mb-2 dark:text-white">
         Transfers 💶
       </h1>
-      <hr />
+      <hr className="w-2/5 p-2 border-gray-300  "/>
       {/* <FetchTransfers /> */}
       <TransfersList />
     </div>

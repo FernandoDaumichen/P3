@@ -53,7 +53,7 @@ export default function MatchesList() {
               {competition.competition}
             </h2>
           </div>
-          <hr className=" mr-6 w-3/4 p-2 " />
+          <hr className=" mr-6 w-3/4 p-2  border-gray-300 " />
           <div className="flex flex-col space-y-1">
             {competition.match.map((match: Match) => (
               <div

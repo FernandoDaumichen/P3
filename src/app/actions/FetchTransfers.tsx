@@ -20,19 +20,20 @@ interface Transfer {
   toCompetitionID: string;
   transferFee: TransferFee;
   transferMarketValue: TransferFee;
+  image?: string;
 }
 
-interface imagesResponse {
+interface TransfersResponse {
   data: Transfer[];
 }
 
-export default function useFetchimages() {
-  const [images, setimages] = useState<Transfer[] | null>(null);
+export default function useFetchTransfers() {
+  const [transfers, setTransfers] = useState<Transfer[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   // This callback will fetch the transfer data
   const fetchData = useCallback(async () => {
-    const url = 'https://transfermarkt-db.p.rapidapi.com/v1/players/images?player_ids=276002%2C85298%2C810895%2C533007%2C330659%2C824353%2C73013%2C523318%2C420884%2C533738&locale=US';
+    const url = "https://transfermarkt-db.p.rapidapi.com/v1/transfers/list?locale=US&top_transfers_first=true&page_number=0";
     const API_KEY = process.env.NEXT_PUBLIC_TRANSFERMARKT_DB;
 
     if (!API_KEY) {
@@ -57,8 +58,8 @@ export default function useFetchimages() {
                           : `HTTP error! status: ${response.status}`;
         throw new Error(errorMessage);
       }
-      const result: imagesResponse = await response.json();
-      setimages(result.data);
+      const result: TransfersResponse = await response.json();
+      setTransfers(result.data);
     } catch (e) {
       if (e instanceof Error) {
         setError(e.message);
@@ -71,7 +72,7 @@ export default function useFetchimages() {
     fetchData();
   }, [fetchData]);
 
-  return { images, error };
+  return { transfers, error };
 }
 // return ( 
 //     <div>
