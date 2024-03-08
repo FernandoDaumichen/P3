@@ -31,7 +31,7 @@ const TransfersComponent = () => {
             <div className="bg-gray-900 text-white rounded-lg shadow-md p-6">
               <div>
           
-                <Image  src={getImageUrlByPlayerId(transfer.playerID)} alt="Player" />
+                {/* <Image  src={getImageUrlByPlayerId(transfer.playerID)} alt="Player" /> */}
                 <h3 className="text-lg font-bold">Player ID: {transfer.playerID}</h3>
                 <p className="text-sm">From Club ID: {transfer.fromClubID}</p>
                 <p className="text-sm">To Club ID: {transfer.toClubID}</p>
