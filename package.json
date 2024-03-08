@@ -31,9 +31,11 @@
     "slick-carousel": "^1.8.1",
     "swiper": "^11.0.7",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vercel": "latest"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "latest",
     "@types/bun": "latest",
     "@types/node": "^20",
     "@types/react": "^18",
