@@ -27,6 +27,11 @@ export default function Navbar() {
                 News
               </div>
             </Link>
+            <Link href="/Leagues">
+              <div className="cursor-pointer text-black hover:text-gray-600 dark:text-white">
+               Leagues
+              </div>
+            </Link>
             <Link href="/transfers-and-rumours">
               <div className="cursor-pointer text-black hover:text-gray-600 dark:text-white">
                 Transfers & Rumours
@@ -35,11 +40,6 @@ export default function Navbar() {
             <Link href="/market-values">
               <div className="cursor-pointer text-black hover:text-gray-600 dark:text-white">
                 Market Values
-              </div>
-            </Link>
-            <Link href="/competitions">
-              <div className="cursor-pointer text-black hover:text-gray-600 dark:text-white">
-                Competitions
               </div>
             </Link>
             <Link href="/forums">
