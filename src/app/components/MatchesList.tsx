@@ -2,6 +2,9 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import useFetchMatches from "../actions/FetchMatches";
+import { BeatLoader } from 'react-spinners';
+
+
 
 interface Match {
   infoOf: string;
@@ -33,7 +36,10 @@ export default function MatchesList() {
     return <p className="text-red-500 text-center">{error}</p>;
   }
   if (!data || data.length === 0) {
-    return <p className="text-center">Loading matches...</p>;
+
+    return  <div className="flex justify-center items-center h-[50vh]">
+    <BeatLoader color="#2e8ed7" loading={true} size={10} />
+</div>
   }
 
   return (
