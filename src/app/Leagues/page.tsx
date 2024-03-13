@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import CircularProgress from "@material-ui/core/CircularProgress";
+
 
 export default function Leagues() {
   return (
