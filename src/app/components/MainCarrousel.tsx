@@ -6,7 +6,9 @@ import useFetchNewsData from "../actions/FetchNewsData";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./MainCarousel.module.css";
+import CircularProgress from '@material-ui/core/CircularProgress';
 interface NewsItem {
+  
   id: number;
   publishDate: string;
   sourceId: number;
@@ -30,12 +32,15 @@ const MainCarousel = () => {
 
   if (error) {
     return <p className="text-center text-red-500">Error loading news.</p>;
+  }  if (!data) {
+
+    return   <div className="flex justify-center items-center h-[50vh]">
+    <CircularProgress />
+  </div>
   }
 
   return (
     <div className="mx-auto max-w-screen-md rounded-xl shadow-lg">
-      {" "}
- 
       <Carousel
         showArrows={true}
         autoPlay={true}

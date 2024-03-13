@@ -2,6 +2,9 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import useFetchMatches from "../actions/FetchMatches";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 interface Match {
   infoOf: string;
@@ -33,7 +36,10 @@ export default function MatchesList() {
     return <p className="text-red-500 text-center">{error}</p>;
   }
   if (!data || data.length === 0) {
-    return <p className="text-center">Loading matches...</p>;
+
+    return   <div className="flex justify-center items-center h-[50vh]">
+    <CircularProgress />
+  </div>
   }
 
   return (
