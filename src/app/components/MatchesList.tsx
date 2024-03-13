@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import useFetchMatches from "../actions/FetchMatches";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { BeatLoader } from 'react-spinners';
 
 
 
@@ -37,9 +37,9 @@ export default function MatchesList() {
   }
   if (!data || data.length === 0) {
 
-    return   <div className="flex justify-center items-center h-[50vh]">
-    <CircularProgress />
-  </div>
+    return  <div className="flex justify-center items-center h-[50vh]">
+    <BeatLoader color="#2e8ed7" loading={true} size={10} />
+</div>
   }
 
   return (

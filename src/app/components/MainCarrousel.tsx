@@ -5,8 +5,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import useFetchNewsData from "../actions/FetchNewsData";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./MainCarousel.module.css";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { BeatLoader } from 'react-spinners';
+
 interface NewsItem {
   
   id: number;
@@ -35,7 +35,7 @@ const MainCarousel = () => {
   }  if (!data) {
 
     return   <div className="flex justify-center items-center h-[50vh]">
-    <CircularProgress />
+        <BeatLoader color="#2e8ed7" loading={true} size={10} />
   </div>
   }
 
