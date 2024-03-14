@@ -24,7 +24,7 @@ export default function Leagues() {
       {isDropdownVisible && (
         <div className="dropdown-content p-4 dark:bg-white rounded-xl shadow-md mb-4 w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 mx-auto lg:hidden">
           <Link
-            href="/leagues/uefa-champions-league"
+            href="/Leagues/uefa-champions-league"
             className="flex items-center p-2 hover:bg-blue-500 hover:text-white"
           >
             <Image
@@ -36,7 +36,7 @@ export default function Leagues() {
             <p className="ml-6 ">UEFA Champions League</p>
           </Link>
           <Link
-            href="/leagues/copa-libertadores"
+            href="/Leagues/copa-libertadores"
             className=" flex items-center p-2 hover:bg-blue-500 hover:text-white"
           >
             <Image
@@ -48,10 +48,10 @@ export default function Leagues() {
             <p className="ml-6 ">Copa Libertadores</p>
           </Link>
           <Link
-            href="/leagues/premier-league"
+            href="/Leagues/premier-league"
             className=" flex items-center p-2 hover:bg-blue-500 hover:text-white"
           >
-            <Image
+            <Image  
               src="/images/leagues/PremierLogo.png"
               alt="Premier League"
               width={50}
@@ -60,7 +60,7 @@ export default function Leagues() {
             <p className="ml-6 ">Premier League</p>
           </Link>
           <Link
-            href="/leagues/brasileirao"
+            href="/Leagues/brasileirao"
             className=" flex items-center p-2 hover:bg-blue-500 hover:text-white"
           >
             <Image
@@ -76,7 +76,7 @@ export default function Leagues() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 justify-items-center">
         <div className="p-4 dark:bg-white rounded-xl shadow-md">
-          <Link href="/leagues/uefa-champions-league">
+          <Link href="/Leagues/uefa-champions-league">
             <Image
               src="/images/leagues/UEFA_Champions_League.png"
               alt="Champions League"
@@ -87,7 +87,7 @@ export default function Leagues() {
         </div>
 
         <div className="p-4 dark:bg-white rounded-xl shadow-md">
-          <Link href="/leagues/copa-libertadores">
+          <Link href="/Leagues/copa-libertadores">
             <Image
               src="/images/leagues/Copa_Libertadores_logo.png"
               alt="Libertadores"
@@ -98,7 +98,7 @@ export default function Leagues() {
         </div>
 
         <div className="p-4 dark:bg-white rounded-xl shadow-md">
-          <Link href="/leagues/premier">
+          <Link href="/Leagues/premier">
             <Image
               src="/images/leagues/PremierLogo.png"
               alt="Premier League"
@@ -109,7 +109,7 @@ export default function Leagues() {
         </div>
 
         <div className="p-4 dark:bg-white rounded-xl shadow-md">
-          <Link href="/leagues/brasileirao">
+          <Link href="/Leagues/brasileirao">
             <Image
               src="/images/leagues/Brasileirao.png"
               alt="Brasileirão"
