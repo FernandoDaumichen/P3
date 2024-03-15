@@ -3,6 +3,7 @@ import React from 'react';
 import useFetchTransfers from '../actions/FetchTransfers';
 import useFetchImages from '../actions/FetchPlayersImage'; // Assuming you have a similar hook for fetching images
 import Image from 'next/image';
+import { BeatLoader } from 'react-spinners';
 
 
 const TransfersComponent = () => {
@@ -21,7 +22,9 @@ const TransfersComponent = () => {
 
   // Handle loading and error states
   if (transferError || imagesError) return <div>Error: {transferError || imagesError}</div>;
-  if (transfers === null || images === null) return <div>Loading...</div>;
+  if (transfers === null || images === null) return <div className="flex justify-center items-center h-[50vh]">
+  <BeatLoader color="#2e8ed7" loading={true} size={10} />
+</div>
 
   return (
     <div className="container mx-auto p-8">
