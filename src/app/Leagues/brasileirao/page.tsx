@@ -3,12 +3,19 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useFetchBraA1, TeamStanding } from "../../actions/FetchLeagues";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function BraA1() {
   const { data, error } = useFetchBraA1();
 
-  if (error) return <div className="text-red-500">Error loading data: {error}</div>;
-  if (!data) return <div>Loading...</div>;
+  if (error)
+    return <div className="text-red-500">Error loading data: {error}</div>;
+  if (!data)
+    return (
+      <div className="flex justify-center items-center h-[50vh]">
+        <BeatLoader color="#2e8ed7" loading={true} size={10} />
+      </div>
+    );
 
   const standings = data?.response?.[0]?.league?.standings[0];
   console.log(standings);
@@ -19,12 +26,19 @@ export default function BraA1() {
 
   return (
     <div className="overflow-x-auto mt-6">
-        <div className="flex justify-center">
-            <Image src="/images/leagues/Brasileirao.png" alt="premierleague" width={150} height={150} />
-      <h1 className="text-8xl md:text-4xl text-white text-bold ">
-Brasileirão Serie A
-      </h1>
+      <div className="flex justify-center">
+        <div className="dark:bg-white rounded-xl p-4">
+          <Image
+            src="/images/leagues/Brasileirao.png"
+            alt="Brasileirao Serie A"
+            width={150}
+            height={150}
+          />
         </div>
+        <h1 className="text-8xl md:text-4xl text-white text-bold ">
+          Brasileirão Serie A
+        </h1>
+      </div>
       {standings && (
         <div className="max-w-screen-lg mx-auto">
           <table className="w-full table-auto border-collapse bg-white shadow-lg">
@@ -47,7 +61,13 @@ Brasileirão Serie A
                 <tr key={index} className="text-xs md:text-sm border-b">
                   <td className="px-2 py-1 text-center">{team.rank}</td>
                   <td className="px-2 py-1 text-center flex items-center space-x-2">
-                    <Image src={team.team.logo} alt={team.team.name} width={24} height={24} unoptimized={true} />
+                    <Image
+                      src={team.team.logo}
+                      alt={team.team.name}
+                      width={24}
+                      height={24}
+                      unoptimized={true}
+                    />
                     <span>{team.team.name}</span>
                   </td>
                   <td className="px-2 py-1 text-center">{team.all.played}</td>
@@ -55,8 +75,12 @@ Brasileirão Serie A
                   <td className="px-2 py-1 text-center">{team.all.draw}</td>
                   <td className="px-2 py-1 text-center">{team.all.lose}</td>
                   <td className="px-2 py-1 text-center">{team.points}</td>
-                  <td className="px-2 py-1 text-center">{team.all.goals.for}</td>
-                  <td className="px-2 py-1 text-center">{team.all.goals.against}</td>
+                  <td className="px-2 py-1 text-center">
+                    {team.all.goals.for}
+                  </td>
+                  <td className="px-2 py-1 text-center">
+                    {team.all.goals.against}
+                  </td>
                   <td className="px-2 py-1 text-center">{team.goalsDiff}</td>
                 </tr>
               ))}
