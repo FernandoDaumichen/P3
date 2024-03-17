@@ -2,10 +2,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useFetchBraA1, TeamStanding } from "../../actions/FetchLeagues";
+import { useFetchPremier, TeamStanding } from "../../actions/FetchLeagues";
 
-export default function BraA1() {
-  const { data, error } = useFetchBraA1();
+export default function Premier() {
+  const { data, error } = useFetchPremier();
 
   if (error) return <div className="text-red-500">Error loading data: {error}</div>;
   if (!data) return <div>Loading...</div>;
@@ -20,9 +20,9 @@ export default function BraA1() {
   return (
     <div className="overflow-x-auto mt-6">
         <div className="flex justify-center">
-            <Image src="/images/leagues/Brasileirao.png" alt="premierleague" width={150} height={150} />
+            <Image src="/images/leagues/PremierLogo.png" alt="premierleague" width={150} height={150} />
       <h1 className="text-8xl md:text-4xl text-white text-bold ">
-Brasileirão Serie A
+        Premier League Standings
       </h1>
         </div>
       {standings && (
