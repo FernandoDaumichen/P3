@@ -54,7 +54,7 @@ export default function Libertadores() {
               </tr>
             </thead>
             <tbody className="text-gray-700">
-              {group.map((team, index) => (
+            {group.map((team: TeamStanding, index: number) => (
                               <tr key={index} className="text-xs md:text-sm border-b">
                   <td className="px-2 py-1 text-center">{team.rank}</td>
                   <td className="px-2 py-1 text-center flex items-center space-x-2">
@@ -70,7 +70,7 @@ export default function Libertadores() {
                   <td className="px-2 py-1 text-center">{team.all.played}</td>
                   <td className="px-2 py-1 text-center">{team.all.win}</td>
                   <td className="px-2 py-1 text-center">{team.all.draw}</td>
-                  <td className="px-2 py-1 text-center">{team.all.lose}</td>
+                  <td className="px-2 py-1 text-center">{team.all.  lose}</td>
                   <td className="px-2 py-1 text-center">{team.points}</td>
                   <td className="px-2 py-1 text-center">
                     {team.all.goals.for}

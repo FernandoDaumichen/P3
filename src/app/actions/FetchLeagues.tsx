@@ -1,32 +1,47 @@
 import { useState, useEffect, useCallback } from 'react';
 import debounce from '@/utils/debounce';
-export interface TeamStanding {
+interface TeamInfo {
+    id: number;
+    name: string;
+    logo: string;
+  }
+  
+  interface GameStats {
+    played: number;
+    win: number;
+    draw: number;
+    lose: number;
+    goals: {
+      for: number;
+      against: number;
+    };
+  }
+  
+ export interface TeamStanding {
     rank: number;
-  position: number;
-  teamName: string;
-  playedGames: number;
-  wins: number;
-  draws: number;
-  losses: number;
-  points: number;
-  goalsFor: number;
-  goalsAgainst: number;
-  goalDifference: number;
-}
-
-export interface LeagueStandings {
-  season: string;
-  leagueName: string;
-  standings: TeamStanding[]; // An array of TeamStanding
-}
-
-export interface ApiResponse {
-  response: {
-    league: {
-      standings: TeamStanding[];
-    }
-  }[];
-}
+    team: TeamInfo;
+    points: number;
+    goalsDiff: number;
+    group?: string; // Optional if not present in all responses
+    form: string;
+    status: string;
+    description: string;
+    all: GameStats;
+    home: GameStats;
+    away: GameStats;
+    update: string;
+  }
+  
+  interface LeagueStandings {
+    standings: TeamStanding[][];
+  }
+  
+  interface ApiResponse {
+    response: {
+      league: LeagueStandings;
+    }[];
+  }
+  
 //braA1=71
 export const useFetchBraA1= () => {
     const [data, setData] = useState<ApiResponse | null>(null);
