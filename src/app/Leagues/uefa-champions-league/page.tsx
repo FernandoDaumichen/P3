@@ -2,11 +2,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useFetchLibertadores, TeamStanding } from "../../actions/FetchLeagues";
+import { useFetchChampions, TeamStanding } from "../../actions/FetchLeagues";
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function Libertadores() {
-  const { data, error } = useFetchLibertadores();
+export default function Champions() {
+  const { data, error } = useFetchChampions();
 
   if (error)
     return <div className="text-red-500">Error loading data: {error}</div>;
@@ -16,6 +16,8 @@ export default function Libertadores() {
         <BeatLoader color="#2e8ed7" loading={true} size={10} />
       </div>
     );
+
+
   const standings = data?.response?.[0]?.league?.standings[0];
   console.log(standings);
 
@@ -28,16 +30,15 @@ export default function Libertadores() {
     <div className="overflow-x-auto mt-6">
       <div className="flex justify-center">
         <div className="dark:bg-white rounded-xl p-4">
-          <Image
-            src="/images/leagues/Copa_Libertadores_logo.png"
-            alt="Liberatadores"
-            width={150}
-            height={150}
-       
-          />
+        <Image
+          src="/images/leagues/UEFA_Champions_League.png"
+          alt="Champions League"
+          width={150}
+          height={150}
+        />
         </div>
-        <h1 className="text-8xl md:text-4xl text-white text-bold ">
-          CONMEBOL Libertadores
+  <h1 className="text-8xl md:text-4xl text-white text-bold ">
+          Champions League
         </h1>
       </div>
       {groups.map((group, groupIndex) => (
