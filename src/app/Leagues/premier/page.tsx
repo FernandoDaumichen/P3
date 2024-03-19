@@ -34,7 +34,7 @@ export default function Premier() {
             height={150}
           />
         </div>
-        <h1 className="text-8xl md:text-4xl text-white text-bold ">
+        <h1 className="text-8xl md:text-4xl text-black text-bold dark:text-white">
           Premier League Standings
         </h1>
       </div>
