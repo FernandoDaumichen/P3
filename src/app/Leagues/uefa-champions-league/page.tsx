@@ -37,7 +37,7 @@ export default function Champions() {
           height={150}
         />
         </div>
-  <h1 className="text-8xl md:text-4xl text-white text-bold ">
+  <h1 className="text-8xl md:text-4xltext-black text-bold dark:text-white">
           Champions League
         </h1>
       </div>

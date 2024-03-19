@@ -3,11 +3,18 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useFetchBraA1, TeamStanding } from "../../actions/FetchLeagues";
+import useFetchNewsDataBraA1 from "../../actions/FetchDataLeagues";
 import BeatLoader from "react-spinners/BeatLoader";
+import { Article } from "../../actions/FetchDataLeagues";
+import { useFetchBraA1TopScores } from "@/app/actions/FetchTopScores";
+import Collapsible from 'react-collapsible';
 
 export default function BraA1() {
   const { data, error } = useFetchBraA1();
+  const { data2, error2 } = useFetchNewsDataBraA1();
+  const { data3, error3 } = useFetchBraA1TopScores();
 
+  
   if (error)
     return <div className="text-red-500">Error loading data: {error}</div>;
   if (!data)
@@ -18,11 +25,16 @@ export default function BraA1() {
     );
 
   const standings = data?.response?.[0]?.league?.standings[0];
-  console.log(standings);
+  // console.log(standings);
+  console.log(data2);
 
   if (!standings || !Array.isArray(standings)) {
     return <div>Invalid standings data</div>;
   }
+
+  if (error2) return <div>Error fetching news: {error2}</div>;
+  if (!data2) return <div>Loading news...</div>;
+  if (!data3) return <div>Loading top scores...</div>;
 
   return (
     <div className="overflow-x-auto mt-6">
@@ -35,7 +47,7 @@ export default function BraA1() {
             height={150}
           />
         </div>
-        <h1 className="text-8xl md:text-4xl text-white text-bold ">
+        <h1 className="text-8xl md:text-4xl text-black text-bold dark:text-white ">
           Brasileirão Serie A
         </h1>
       </div>
@@ -88,6 +100,62 @@ export default function BraA1() {
           </table>
         </div>
       )}
+      <div className="flex  mt-4 flex-wrap">
+        <h2 className="text-2xl text-black dark:text-white w-full text-center mb-4">
+          Brasileirão Serie A News
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-8  xl mx-auto">
+          {data2?.articles.map((article: Article, index: number) => (
+            <div
+              key={index}
+              className="transition-shadow hover:shadow-md p-4 rounded-lg bg-white dark:bg-gray-800"
+            >
+              <h3 className="text-lg font-semibold dark:text-white mb-2">
+                {article.headline}
+              </h3>
+              {article.images && article.images.length > 0 && (
+                <div className="mb-2">
+                  <Image
+                    src={article.images[0].url}
+                    alt={article.images[0].caption || article.headline}
+                    width={article.images[0].width}
+                    height={article.images[0].height}
+                    layout="responsive"
+                    unoptimized={true}
+                    className="rounded-lg"
+                  />
+                </div>
+              )}
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                {article.description}
+              </p>
+              <Link href={article.links.web.href} passHref  className="inline-block px-6 py-2 border rounded text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white transition-colors dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400">
+                  Read more
+            
+              </Link>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">Top Scorers</h2>
+        {data3.response.slice(0, 10).map((player, index) => (
+              <Collapsible key={index} trigger={`${player.player.name} (${player.statistics[0].team.name})`} className="mb-4">
+                <div className="flex items-center space-x-4 my-2">
+                  <Image src={player.player.photo} alt={player.player.name} width={50} height={50} className="rounded-full" />
+                  <div>
+                    <div>Name: {player.player.name}</div>
+                    <div>Club: {player.statistics[0].team.name}</div>
+                    <div>Nationality: {player.player.nationality}</div>
+                    <div>Position: {player.statistics[0].games.position}</div>
+                    <div>Goals: {player.statistics[0].goals.total}</div>
+                    {/* Add more stats as needed */}
+                  </div>
+                </div>
+              </Collapsible>
+            ))}
+          </div>
+
+      </div>
     </div>
   );
 }

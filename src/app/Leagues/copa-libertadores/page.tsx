@@ -36,7 +36,7 @@ export default function Libertadores() {
        
           />
         </div>
-        <h1 className="text-8xl md:text-4xl text-white text-bold ">
+        <h1 className="text-8xl md:text-4xl text-black text-bold dark:text-white">
           CONMEBOL Libertadores
         </h1>
       </div>
