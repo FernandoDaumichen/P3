@@ -35,7 +35,6 @@ export default function BraA1() {
   if (!data2) return <div>Loading news...</div>;
   if (!data3) return <div>Loading top scores...</div>;
 
-
   return (
     <div className="overflow-x-auto mt-6">
       <div className="flex justify-center">
@@ -140,34 +139,64 @@ export default function BraA1() {
           ))}
         </div>
         <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Top Scorers</h2>
-        {data3.response.slice(0, 10).map((player, index) => (
-          <Collapsible
-            key={index}
-            trigger={`${player.player.name} (${player.statistics[0].team.name})`}
-            className="mb-4"
-          >
-            <div className="flex items-center space-x-4 my-2">
-              <Image
-                src={player.player.photo}
-                alt={player.player.name}
-                width={50}
-                height={50}
-                className="rounded-full"
-                unoptimized={true}
-              />
-              <div>
-                <div>Name: {player.player.name}</div>
-                <div>Club: {player.statistics[0].team.name}</div>
-                <div>Nationality: {player.player.nationality}</div>
-                <div>Position: {player.statistics[0].games.position}</div>
-                <div>Goals: {player.statistics[0].goals.total}</div>
-                {/* Add more stats as needed */}
+          <h2 className="text-2xl font-bold mb-4">Top Scorers</h2>
+          {data3.response.slice(0, 10).map((player, index) => (
+            <Collapsible
+              key={index}
+              trigger={
+                <div className="flex items-center justify-between p-4 bg-gray-200 rounded-lg">
+                  <div className="flex items-center space-x-4">
+                    <Image
+                      src={player.player.photo}
+                      alt={player.player.name}
+                      width={50}
+                      height={50}
+                      className="rounded-full"
+                      unoptimized={true}
+                    />
+                    <div>
+                      <p className="font-semibold">{player.player.name}</p>
+                      <p className="text-sm">{player.player.nationality}</p>
+                      <p className="text-sm">
+                        {player.statistics[0].team.name}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p>Position:{player.statistics[0].games.position}</p>
+                    <p className="font-semibold">
+                      {player.statistics[0].goals.total} Goals
+                    </p>
+                  </div>
+                </div>
+              }
+              className="mb-4"
+            >
+              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-gray-100 rounded-lg">
+                <h2> Player Info </h2> 
+                <hr />
+                <p>Full Name:{player.player.firstname}{player.player.lastname}</p>
+                <p>Birthday: {player.player.birth.date}</p>
+                <p>Age: {player.player.age}</p>
+                <p>Birth Place: {player.player.birth.place}</p>
+                <p>Height: {player.player.height}</p>
+                <p>Weight: {player.player.weight}</p>
+                
+                <h2> Player Stats </h2>
+                <hr />
+                <p>Matches: {player.statistics[0].games.appearences}</p>
+                <p>Minutes Played: {player.statistics[0].games.minutes}</p>
+                <p>Shots: {player.statistics[0].shots.total}</p>
+                <p>Yellow Cards: {player.statistics[0].cards.yellow}</p>
+                <p>Red Cards: {player.statistics[0].cards.red}</p>
+                <p>Fouls Committed: {player.statistics[0].fouls.committed}</p>
+                <p>Passes: {player.statistics[0].passes.total}</p>
+
               </div>
-            </div>
-          </Collapsible>
-        ))}
-      </div></div>
+            </Collapsible>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
