@@ -183,6 +183,6 @@ export const useFetchBraA1TopScores= () => {
         debouncedFetchData();
     }, [fetchData]);
 
-    
+    console.log(data3); 
     return { data3, error3};
 };
