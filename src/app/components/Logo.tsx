@@ -13,7 +13,7 @@ export default function Logo() {
           className="mb-4 hidden dark:block"
         />
          <Image
-          src="/images/white.png"
+          src="/images/WhiteLogo.png"
           alt="transferMarket Logo- Light"
           width={200}
           height={65}

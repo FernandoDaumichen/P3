@@ -154,6 +154,7 @@ export default function BraA1() {
                 width={50}
                 height={50}
                 className="rounded-full"
+                unoptimized={true}
               />
               <div>
                 <div>Name: {player.player.name}</div>

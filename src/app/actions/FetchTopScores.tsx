@@ -139,9 +139,11 @@ export const useFetchBraA1TopScores= () => {
     const [data3, setData] = useState<ApiResponse | null>(null);
     const [error3, setError] = useState<string | null>(null);
 
+
+
     const fetchData = useCallback(async () => {
-      const url = 'https://api-football-beta.p.rapidapi.com/players/topscorers';
-      const API_KEY = process.env.NEXT_PUBLIC_FOOTBALL_APIF;
+        const url = "https://api-football-beta.p.rapidapi.com/players/topscorers?season=2023&league=71";
+        const API_KEY = process.env.NEXT_PUBLIC_FOOTBALL_APIF;
         if (!API_KEY) {
           console.error('API key is not defined');
           setError('API key is not defined');
@@ -149,11 +151,6 @@ export const useFetchBraA1TopScores= () => {
       }
         const options = {
             method: "GET",
-            url: 'https://api-football-beta.p.rapidapi.com/players/topscorers',
-            params: {
-              season: '2023',
-              league: '71'
-            },
             headers: {
                 "X-RapidAPI-Key": API_KEY ,
                 "X-RapidAPI-Host": "api-football-beta.p.rapidapi.com",
@@ -183,6 +180,6 @@ export const useFetchBraA1TopScores= () => {
         debouncedFetchData();
     }, [fetchData]);
 
-    console.log(data3); 
+    // console.log(data3);
     return { data3, error3};
 };
