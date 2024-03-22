@@ -32,23 +32,35 @@ export default function BraA1() {
   }
 
   if (error2) return <div>Error fetching news: {error2}</div>;
-  if (!data2) return <div>Loading news...</div>;
-  if (!data3) return <div>Loading top scores...</div>;
+  if (!data2)
+    return (
+      <div className="flex justify-center items-center h-[50vh]">
+        <BeatLoader color="#2e8ed7" loading={true} size={10} />
+      </div>
+    );
+  if (!data3)
+    return (
+      <div className="flex justify-center items-center h-[50vh]">
+        <BeatLoader color="#2e8ed7" loading={true} size={10} />
+      </div>
+    );
 
   return (
     <div className="overflow-x-auto mt-6">
       <div className="flex justify-center">
-        <div className="dark:bg-white rounded-xl p-4">
-          <Image
-            src="/images/leagues/Brasileirao.png"
-            alt="Brasileirao Serie A"
-            width={150}
-            height={150}
-          />
+        <div>
+          <div className="dark:bg-white rounded-xl flex justify-center items-center p-4">
+            <Image
+              src="/images/leagues/Brasileirao.png"
+              alt="Brasileirao Serie A"
+              width={150}
+              height={150}
+            />
+          </div>
+          <h1 className="text-8xl md:text-4xl text-black text-bold dark:text-white p-4 ">
+            Brasileirão Serie A
+          </h1>
         </div>
-        <h1 className="text-8xl md:text-4xl text-black text-bold dark:text-white p-4 ">
-          Brasileirão Serie A
-        </h1>
       </div>
       {standings && (
         <div className="max-w-screen-lg mx-auto">
@@ -139,62 +151,104 @@ export default function BraA1() {
           ))}
         </div>
         <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Top Scorers</h2>
-          {data3.response.slice(0, 10).map((player, index) => (
-            <Collapsible
-              key={index}
-              trigger={
-                <div className="flex items-center justify-between p-4 bg-gray-200 rounded-lg">
-                  <div className="flex items-center space-x-4">
-                    <Image
-                      src={player.player.photo}
-                      alt={player.player.name}
-                      width={50}
-                      height={50}
-                      className="rounded-full"
-                      unoptimized={true}
-                    />
-                    <div>
-                      <p className="font-semibold">{player.player.name}</p>
-                      <p className="text-sm">{player.player.nationality}</p>
-                      <p className="text-sm">
-                        {player.statistics[0].team.name}
+          <h2 className="text-2xl text-black dark:text-white w-full text-center mb-4">
+            Top Scorers
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {data3.response.slice(0, 12).map((player, index) => (
+              <Collapsible
+                key={index}
+                trigger={
+                  <div className="flex items-center justify-between p-4 bg-gray-200 rounded-lg">
+                    <div className="flex items-center space-x-4">
+                      <Image
+                        src={player.player.photo}
+                        alt={player.player.name}
+                        width={50}
+                        height={50}
+                        className="rounded-full"
+                        unoptimized={true}
+                      />
+                      <div>
+                        <p className="font-semibold">{player.player.name}</p>
+                        <p className="text-sm">{player.player.nationality}</p>
+                        <p className="text-sm">
+                          {player.statistics[0].team.name}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p>Position:{player.statistics[0].games.position}</p>
+                      <p className="font-semibold">
+                        {player.statistics[0].goals.total} Goals
                       </p>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p>Position:{player.statistics[0].games.position}</p>
-                    <p className="font-semibold">
-                      {player.statistics[0].goals.total} Goals
+                }
+                className="mb-4"
+              >
+                <div className="mt-4 flex flex-col md:flex-row justify-between gap-4 p-4 bg-gray-100 rounded-lg">
+                  <div className="flex-1">
+                    <h2 className="text-lg font-bold mb-4">Player Info</h2>
+                    <p>
+                      <strong>Full Name:</strong> {player.player.firstname}
+                      {player.player.lastname}
+                    </p>
+                    <p>
+                      <strong>Birthday:</strong> {player.player.birth.date}
+                    </p>
+                    <p>
+                      <strong>Age:</strong> {player.player.age}
+                    </p>
+                    <p>
+                      <strong>Birth Place:</strong> {player.player.birth.place}
+                    </p>
+                    <p>
+                      <strong>Height:</strong> {player.player.height}
+                    </p>
+                    <p>
+                      <strong>Weight:</strong> {player.player.weight}
+                    </p>
+                  </div>
+
+                  <div className="flex-1">
+                    <h2 className="text-lg font-bold mb-4">Player Stats</h2>
+                    <p>
+                      <strong>Matches:</strong>
+                      {player.statistics[0].games.appearences}
+                    </p>
+                    <p>
+                      <strong>Minutes Played:</strong>
+                      {player.statistics[0].games.minutes}
+                    </p>
+                    <p>
+                      <strong>Shots:</strong> {player.statistics[0].shots.total}
+                    </p>
+                    <p>
+                      <strong>Goals:</strong> {player.statistics[0].goals.total}
+                    </p>
+                    <p>
+                      <strong>Yellow Cards:</strong>
+                      {player.statistics[0].cards.yellow}
+                    </p>
+                    <p>
+                      <strong>Red Cards:</strong>{" "}
+                      {player.statistics[0].cards.red}
+                    </p>
+                    <p>
+                      <strong>Fouls Committed:</strong>
+                      {player.statistics[0].fouls.committed}
+                    </p>
+                    <p>
+                      <strong>Passes:</strong>{" "}
+                      {player.statistics[0].passes.total}
                     </p>
                   </div>
                 </div>
-              }
-              className="mb-4"
-            >
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-gray-100 rounded-lg">
-                <h2> Player Info </h2> 
-                <hr />
-                <p>Full Name:{player.player.firstname}{player.player.lastname}</p>
-                <p>Birthday: {player.player.birth.date}</p>
-                <p>Age: {player.player.age}</p>
-                <p>Birth Place: {player.player.birth.place}</p>
-                <p>Height: {player.player.height}</p>
-                <p>Weight: {player.player.weight}</p>
-                
-                <h2> Player Stats </h2>
-                <hr />
-                <p>Matches: {player.statistics[0].games.appearences}</p>
-                <p>Minutes Played: {player.statistics[0].games.minutes}</p>
-                <p>Shots: {player.statistics[0].shots.total}</p>
-                <p>Yellow Cards: {player.statistics[0].cards.yellow}</p>
-                <p>Red Cards: {player.statistics[0].cards.red}</p>
-                <p>Fouls Committed: {player.statistics[0].fouls.committed}</p>
-                <p>Passes: {player.statistics[0].passes.total}</p>
-
-              </div>
-            </Collapsible>
-          ))}
+              </Collapsible>
+            ))}
+          </div>
         </div>
       </div>
     </div>

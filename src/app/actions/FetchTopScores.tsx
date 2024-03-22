@@ -143,7 +143,7 @@ export const useFetchBraA1TopScores= () => {
 
     const fetchData = useCallback(async () => {
         const url = "https://api-football-beta.p.rapidapi.com/players/topscorers?season=2023&league=71";
-        const API_KEY = process.env.NEXT_PUBLIC_FOOTBALL_APIF;
+        const API_KEY = process.env.NEXT_PUBLIC_FOOTBALL_API;
         if (!API_KEY) {
           console.error('API key is not defined');
           setError('API key is not defined');
