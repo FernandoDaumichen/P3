@@ -3,11 +3,13 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useFetchBraA1, TeamStanding } from "../../actions/FetchLeagues";
-import useFetchNewsDataBraA1 from "../../actions/FetchDataLeagues";
+import {useFetchNewsDataBraA1} from "../../actions/FetchDataLeagues";
 import BeatLoader from "react-spinners/BeatLoader";
 import { Article } from "../../actions/FetchDataLeagues";
 import { useFetchBraA1TopScores } from "@/app/actions/FetchTopScores";
 import Collapsible from "react-collapsible";
+import NavBra from "@/app/components/smallNavs/NavBra";
+
 
 export default function BraA1() {
   const { data, error } = useFetchBraA1();
@@ -47,9 +49,9 @@ export default function BraA1() {
 
   return (
     <div className="overflow-x-auto mt-6">
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-4">
         <div>
-          <div className="dark:bg-white rounded-xl flex justify-center items-center p-4">
+          <div className="dark:bg-white rounded-xl flex justify-center items-center p-4 ">
             <Image
               src="/images/leagues/Brasileirao.png"
               alt="Brasileirao Serie A"
@@ -57,14 +59,15 @@ export default function BraA1() {
               height={150}
             />
           </div>
-          <h1 className="text-8xl md:text-4xl text-black text-bold dark:text-white p-4 ">
+          <h1 className="text-8xl text-center md:text-4xl text-black text-bold dark:text-white p-4 ">
             Brasileirão Serie A
           </h1>
+          <NavBra />
         </div>
       </div>
       {standings && (
         <div className="max-w-screen-lg mx-auto">
-          <table className="w-full table-auto border-collapse bg-white shadow-lg">
+          <table id="standings" className="w-full table-auto border-collapse bg-white shadow-lg">
             <thead className="bg-gray-900 text-white">
               <tr>
                 <th className="px-2 py-1 text-center text-sm">Pos</th>
@@ -111,8 +114,8 @@ export default function BraA1() {
           </table>
         </div>
       )}
-      <div className="flex  mt-4 flex-wrap">
-        <h2 className="text-2xl text-black dark:text-white w-full text-center mb-4 ">
+      <div  id="news" className="flex  mt-4 flex-wrap">
+        <h2 className="text-2xl text-black dark:text-white w-full text-center mb-6">
           Brasileirão Serie A News
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  xl mx-auto">
@@ -150,8 +153,8 @@ export default function BraA1() {
             </div>
           ))}
         </div>
-        <div className="mt-8">
-          <h2 className="text-2xl text-black dark:text-white w-full text-center mb-4">
+        <div id="top-scorers"className="mt-8">
+          <h2 className="text-2xl text-black dark:text-white w-full text-center mb-6 ">
             Top Scorers
           </h2>
 
