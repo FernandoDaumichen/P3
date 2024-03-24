@@ -273,6 +273,13 @@ const fetchData = useCallback(async () => {
     }
 }, []);
 
+useEffect(() => {
+    const debouncedFetchData = debounce(fetchData, 1000);
+    debouncedFetchData();
+}, [fetchData]);
+
+// console.log(data3);
+return { data3, error3};
 
 }
 
