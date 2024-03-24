@@ -8,7 +8,7 @@ import Collapsible from "react-collapsible";
 import { Article } from "../../actions/FetchDataLeagues";
 import { useFetchNewsDataChampions } from "../../actions/FetchDataLeagues";
 import { useFetchChampionsTopScores } from "../../actions/FetchTopScores";
-import NavLib from "@/app/components/smallNavs/NavLibertadores";
+import NavChamp from "@/app/components/smallNavs/NavLibertadores";
 
 export default function Champions() {
   const { data, error } = useFetchChampions();
@@ -24,14 +24,14 @@ export default function Champions() {
       </div>
     );
 
-    const standings = data?.response?.[0]?.league?.standings[0];
-    console.log(standings);
-  
-    const groups = data?.response?.[0]?.league?.standings;
-    if (!groups || !Array.isArray(groups)) {
-      return <div>Invalid standings data</div>;
-    }
-  
+  const standings = data?.response?.[0]?.league?.standings[0];
+  console.log(standings);
+
+  const groups = data?.response?.[0]?.league?.standings;
+  if (!groups || !Array.isArray(groups)) {
+    return <div>Invalid standings data</div>;
+  }
+
   if (!standings || !Array.isArray(standings)) {
     return <div>Invalid standings data</div>;
   }
@@ -65,7 +65,7 @@ export default function Champions() {
           <h1 className="text-8xl text-center md:text-4xl text-black text-bold dark:text-white p-4 ">
             Champions League
           </h1>
-          <NavLib />
+          <NavChamp />
         </div>
       </div>
       {groups.map((group, groupIndex) => (
@@ -73,7 +73,10 @@ export default function Champions() {
           <h2 className="text-xl font-bold mb-4 text-black dark:text-white">
             Group {String.fromCharCode(65 + groupIndex)}
           </h2>
-          <table id="standings" className="w-full table-auto border-collapse bg-white shadow-lg">
+          <table
+            id="standings"
+            className="w-full table-auto border-collapse bg-white shadow-lg"
+          >
             <thead className="bg-gray-900 text-white">
               <tr>
                 <th className="px-2 py-1 text-center text-sm">Pos</th>
