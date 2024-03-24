@@ -26,19 +26,20 @@ export default function Libertadores() {
 
   return (
     <div className="overflow-x-auto mt-6">
-      <div className="flex justify-center">
-        <div className="dark:bg-white rounded-xl p-4">
-          <Image
-            src="/images/leagues/Copa_Libertadores_logo.png"
-            alt="Liberatadores"
-            width={150}
-            height={150}
-       
-          />
+      <div className="flex justify-center mb-4">
+        <div>
+          <div className="dark:bg-white rounded-xl flex justify-center items-center p-4 ">
+            <Image
+              src="/images/leagues/Copa_Libertadores_logo.png"
+              alt="Liberatadores"
+              width={150}
+              height={150}
+            />
+          </div>
+          <h1 className="text-8xl md:text-4xl text-black text-bold dark:text-white">
+            CONMEBOL Libertadores
+          </h1>
         </div>
-        <h1 className="text-8xl md:text-4xl text-black text-bold dark:text-white">
-          CONMEBOL Libertadores
-        </h1>
       </div>
       {groups.map((group, groupIndex) => (
         <div key={groupIndex} className="max-w-screen-lg mx-auto mt-8">
