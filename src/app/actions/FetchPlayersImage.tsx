@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 
+
 interface TransferFee {
   value: string;
   currency: string;
@@ -23,18 +24,26 @@ interface Transfer {
   image?: string;
 }
 
-interface imagesResponse {
+interface ImagesResponse {
   data: Transfer[];
 }
 
-export default function useFetchimages() {
-  const [images, setimages] = useState<Transfer[] | null>(null);
+// Default playerIDs to an empty array if no value is passed
+export default function useFetchImages(playerIDs: string[] = []) {
+  const [images, setImages] = useState<Transfer[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // This callback will fetch the transfer data
   const fetchData = useCallback(async () => {
-    const url = 'https://transfermarkt-db.p.rapidapi.com/v1/players/images?player_ids=276002%2C85298%2C810895%2C533007%2C330659%2C824353%2C73013%2C523318%2C420884%2C533738&locale=US';
+    // Check if playerIDs is defined and is an array
+    if (!Array.isArray(playerIDs) || playerIDs.length === 0) {
+      setImages([]);
+      return;
+    }
+
+    const playerIDsParam = playerIDs.join('%2C');
+    const url = `https://transfermarkt-db.p.rapidapi.com/v1/players/images?player_ids=${playerIDsParam}&locale=WORLD`;
     const API_KEY = process.env.NEXT_PUBLIC_TRANSFERMARKT_DB;
+    console.log("Fetching from URL:", url)
 
     if (!API_KEY) {
       console.error('API key is not defined');
@@ -58,30 +67,18 @@ export default function useFetchimages() {
                           : `HTTP error! status: ${response.status}`;
         throw new Error(errorMessage);
       }
-      const result: imagesResponse = await response.json();
-      setimages(result.data);
+      const result: ImagesResponse = await response.json();
+      setImages(result.data);
     } catch (e) {
       if (e instanceof Error) {
         setError(e.message);
       }
     }
-  }, []);
+  }, [playerIDs.join(',')]); // Dependency on the concatenated playerIDs
 
-  // Effect to initiate the fetch when the component using this hook is mounted
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
   return { images, error };
 }
-// return ( 
-//     <div>
-//       <h1>Api Status</h1>
-//       {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-//       {error && <p>{error}</p>}
-//     </div>
-// )
-
-
-
-

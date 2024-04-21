@@ -112,11 +112,11 @@ export default function Navbar() {
               Transfers & Rumours
             </div>
           </Link>
-          <Link href="/forums">
+          {/* <Link href="/forums">
             <div className="cursor-pointer text-black hover:text-gray-600 dark:text-white py-1">
               Forums
             </div>
-          </Link>
+          </Link> */}
           {/* Add more links for mobile menu */}
         </div>
       </div>
